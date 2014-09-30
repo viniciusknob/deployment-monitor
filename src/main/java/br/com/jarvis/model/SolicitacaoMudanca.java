@@ -6,6 +6,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
+import org.apache.commons.lang.builder.EqualsBuilder;
+import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.hibernate.Session;
 
 @Entity
@@ -47,14 +49,11 @@ public class SolicitacaoMudanca extends DAO<SolicitacaoMudanca> {
 	
 	@Override
 	public int hashCode() {
-		return id.hashCode();
+		return HashCodeBuilder.reflectionHashCode(this);
 	}
 	
 	@Override
 	public boolean equals(Object obj) {
-		if (!(obj instanceof SolicitacaoMudanca)) {
-			return false;
-		}
-		return this.hashCode() == obj.hashCode();
+		return EqualsBuilder.reflectionEquals(this, obj);
 	}
 }
