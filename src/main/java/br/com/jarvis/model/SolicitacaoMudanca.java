@@ -8,10 +8,9 @@ import javax.persistence.Id;
 
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
-import org.hibernate.Session;
 
 @Entity
-public class SolicitacaoMudanca extends DAO<SolicitacaoMudanca> {
+public class SolicitacaoMudanca extends DAO {
 	private static final long serialVersionUID = 7232480103117214026L;
 
 	@Id 
@@ -20,14 +19,6 @@ public class SolicitacaoMudanca extends DAO<SolicitacaoMudanca> {
 	private String nome;
 	private Date data;
 
-	public SolicitacaoMudanca() {
-		super(null);
-	}
-	
-	public SolicitacaoMudanca(Session session) {
-		super(session);
-	}
-	
 	public Long getId() {
 		return id;
 	}
