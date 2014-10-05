@@ -47,6 +47,14 @@ public abstract class DAO implements Serializable {
 		return type.cast(query.uniqueResult());
 	}
 	
+	public static boolean delete(Class<?> type, long id) {
+		String hql = new StringBuilder("delete from ").append(type.getSimpleName()).append(" t where t.id = :id").toString();
+
+		Query query = session.createQuery(hql).setParameter("id", id);
+
+		return 1 == query.executeUpdate();
+	}
+	
 	@SuppressWarnings("unchecked")
 	public static <T extends DAO> List<T> getAll(Class<T> type) {
 		return (List<T>) session.createCriteria(type).list();

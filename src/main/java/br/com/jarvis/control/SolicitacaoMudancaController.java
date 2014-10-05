@@ -16,7 +16,28 @@ public class SolicitacaoMudancaController extends SuperController {
 	
 	@Post("/save")
 	public void save(SolicitacaoMudanca sm) {
-		sm.add();
+		if (sm.getId() != null) {
+			SolicitacaoMudanca update = DAO.getByID(SolicitacaoMudanca.class, sm.getId());
+			update.setNome(sm.getNome());
+			update.setData(sm.getData());
+			update.update();
+		} else {
+			sm.add();
+		}
 		result.redirectTo(this).list();
+	}
+
+	@Path("/delete/{id}")
+	public void delete(long id) {
+		DAO.delete(SolicitacaoMudanca.class, id);
+		result.redirectTo(this).list();
+	}
+	
+	@Path("/edit/{id}")
+	public void edit(long id) {
+		SolicitacaoMudanca sm = DAO.getByID(SolicitacaoMudanca.class, id);
+		result.include("sm", sm);
+		list();
+		result.of(this).list();
 	}
 }

@@ -31,7 +31,7 @@ public class SolicitacaoMudancaTest {
 	@Test
 	public void deveRemover_umRegistro_existente() {
 		SolicitacaoMudanca dao = criarRegistro();
-		dao.delete();
+		DAO.delete(SolicitacaoMudanca.class, dao.getId());
 		SolicitacaoMudanca actual = DAO.getByID(SolicitacaoMudanca.class, dao.getId());
 		Assert.assertNull(actual);
 	}
