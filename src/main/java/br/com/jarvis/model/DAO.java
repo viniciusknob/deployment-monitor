@@ -24,7 +24,7 @@ public abstract class DAO implements Serializable {
 		session = cfg.buildSessionFactory(serviceRegistry).openSession();
 	}
 	
-	public abstract Long getId();
+	public abstract Serializable getId();
 	
 	public boolean add() {
 		Serializable saved = session.save(this);
