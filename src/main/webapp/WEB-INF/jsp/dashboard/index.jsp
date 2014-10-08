@@ -1,13 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
-	<head>
+  
+  <head>
+        <!-- Standard Meta -->
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
         <!-- Site Properities -->
-        <title>Homepage Example - Semantic</title>
+        <title>Deployment Monitor</title>
         <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
         <link rel="stylesheet" type="text/css" href="semantic-ui-0.19.3/css/semantic.min.css">
         <style>
@@ -37,9 +39,12 @@
         </style>
     </head>
 
-    <body class="ui dimmable">
+    <body>
+        <!-- Conteudo -->
         <div class="ui one column page grid">
             <div class="column">
+
+                <!-- Menu -->
                 <div class="ui tiered teal menu">
                     <div class="menu">
                         <a class="active item">
@@ -57,11 +62,12 @@
                     <div class="ui sub menu">
                          <a class="active item">Tudo</a>
                          <c:forEach items="${sms}" var="sm">
-                         	<c:url value="/filter/sm/${sm.id}" var="filter"/>
-							<a class="item" href="${filter}">${sm.nome}</a>
+                             <c:url value="/filter/sm/${sm.id}" var="filter"/>
+                             <a class="item" href="${filter}">${sm.nome}</a>
                          </c:forEach>
                     </div>
                 </div>
+              
                 <!-- Estatisticas gerais -->
                 <div class="ui four column grid">
                     <div class="column">
@@ -235,6 +241,35 @@
                 </div>
             </div>
         </div>
+      
+        <!-- Modais -->
+        <div class="ui basic modal" id="modalInfo">
+             <i class="close icon"></i>
+            <div class="header">Informação</div>
+            <div class="content">
+                <div class="left">
+                     <i class="info icon"></i>
+                </div>
+                <div class="right">
+                     <h3 class="ui header">Solicitação de Reintegrate para Deploy (SRD)</h3>
+                    <p>Antigo "Descritor de Reintegrate". Uma SRD é mais simples e também mais rápida de criar.</p>
+                     <h3 class="ui header">Pacote</h3>
+                    <p>Conjunto de SRDs de uma mesma aplicação que serão implantadas juntas.</p>
+                     <h3 class="ui header">Status</h3>
+                    <p>Estado da SRD, pode assumir:</p>
+                    <ol class="ui list">
+                        <li>Pendente de Reintegrate</li>
+                        <li>Reintegrado/Pendente de Deploy</li>
+                        <li>Deploy em Andamento</li>
+                        <li>Implantado/Finalizado</li>
+                    </ol>
+                </div>
+            </div>
+            <div class="actions">
+                <div class="ui button">Okay</div>
+            </div>
+        </div>
+      
         <!-- Scripts -->
         <script src="js/jquery-1.11.1.min.js"></script>
         <script src="semantic-ui-0.19.3/js/semantic.min.js"></script>
@@ -245,33 +280,5 @@
                 .modal('setting', 'transition', 'vertical flip');
             $('#tableLatestSolicitations').tablesort();
         </script>
-        <div class="ui dimmer page">
-        	<div class="ui basic modal" id="modalInfo">
-				<i class="close icon"></i>
-				<div class="header">Informação</div>
-				<div class="content">
-					<div class="left">
-						<i class="info icon"></i>
-					</div>
-					<div class="right">
-						<h3 class="ui header">Solicitação de Reintegrate para Deploy (SRD)</h3>
-						<p>Antigo "Descritor de Reintegrate". Uma SRD é simples e elegante :)</p>
-						<h3 class="ui header">Pacote</h3>
-						<p>Conjunto de SRDs de uma mesma aplicação que serão implantadas juntas.</p>
-						<h3 class="ui header">Status</h3>
-						<p>Estado da SRD, pode assumir:</p>
-						<ol class="ui list">
-	                        <li>Pendente de Reintegrate</li>
-	                        <li>Reintegrado/Pendente de Deploy</li>
-	                        <li>Deploy em Andamento</li>
-	                        <li>Implantado/Finalizado</li>
-						</ol>
-					</div>
-				</div>
-				<div class="actions">
-					<div class="ui button">Okay</div>
-				</div>
-			</div>
-		</div>
-	</body>
+  </body>
 </html>
