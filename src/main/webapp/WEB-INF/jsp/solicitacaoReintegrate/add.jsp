@@ -58,7 +58,7 @@
                              <i class="text file outline icon"></i> Nova Solicitação
                         </a>
                         <div class="right menu">
-                            <a class="item" href="index.html">
+                            <a class="item" href="${linkTo[DashboardController].index}">
                                  <i class="dashboard icon"></i> Dashboard
                             </a>
                             <a class="item" id="btnInfo">
@@ -85,8 +85,7 @@
                     <br />
                     <div class="two fields">
                         <div class="field">
-                            <div class="ui pointing below black label">
-                                SM
+                            <div class="ui pointing below black label">SM
                             </div>
                             <a class="ui pointing below label" id="btnAddSM" style="float: right;">
                                 Minha SM não existe!
@@ -96,25 +95,25 @@
                                 <div class="default text">Selecione...</div>
                                  <i class="dropdown icon"></i>
                                 <div class="menu">
-                                	<c:forEach items="${listSM}" var="sm">
-                                    	<div class="item" data-value="${sm.id}">${sm.nome}</div>
+                                    <c:forEach items="${listSM}" var="sm">
+                                        <div class="item" data-value="${sm.id}">${sm.nome}</div>
                                     </c:forEach>
                                 </div>
                             </div>
                         </div>
                         <div class="disabled field" id="field2step1">
-                            <div class="ui pointing below black label">
-                                Demanda
+                            <div class="ui pointing below black label">Atividade
                             </div>
-                            <a class="ui pointing below label" id="btnAddDemand" style="float: right;">
-                                Minha demanda não existe!
+                            <a class="ui pointing below label" id="btnAddActivity" style="float: right;">
+                                Minha atividade não existe!
                             </a>
-                            <div class="ui fluid selection dropdown" id="dropdownDemand">
-                                <input type="hidden" name="demanda" id="nrDemanda">
+                            <div class="ui fluid selection dropdown" id="dropdownActivity">
+                                <input type="hidden" name="atividade" id="nrAtividade">
                                 <div class="default text">Selecione...</div>
                                  <i class="dropdown icon"></i>
                                 <div class="menu">
-                                    <!-- <div class="item" data-value="id1">12345: Uma demanda</div>
+                                    <!-- Exemplo
+                                    <div class="item" data-value="id1">12345: Uma demanda</div>
                                     <div class="item" data-value="id2">456: Um QC</div>
                                     <div class="item" data-value="id3">567890: Um INC</div>
                                     -->
@@ -125,7 +124,7 @@
                     <br />
                     <div class="ui secondary large menu">
                         <div class="right menu">
-                            <a class="active item" id="btnNextStep1">
+                             <a class="active item" id="btnNextStep1">
                                 Próximo <i class="long arrow right icon"></i>
                             </a>
                         </div>
@@ -146,8 +145,8 @@
                                 </tr>
                             </thead>
                             <tbody>
-<!--
-                                 <tr>
+                                <!-- Exemplo
+                                <tr>
                                     <td>
                                         <div class="ui toggle checkbox">
                                             <input type="checkbox" name="revisions[0]" value="22356" id="22356">
@@ -158,17 +157,17 @@
                                     <td>06 Jun, 2014 <i class="time icon"></i> 13:06</td>
                                     <td>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</td>
                                 </tr>
--->
+                                -->
                             </tbody>
                         </table>
                     </div>
                     <br />
                     <div class="ui secondary large menu">
                         <a class="active item" id="btnPrevStep2">
-                            <i class="long arrow left icon"></i> Voltar
+                             <i class="long arrow left icon"></i> Voltar
                         </a>
                         <div class="right menu">
-                            <a class="active item" id="btnNextStep2">
+                             <a class="active item" id="btnNextStep2">
                                 Próximo <i class="long arrow right icon"></i>
                             </a>
                         </div>
@@ -201,13 +200,13 @@
                             <div class="field" style="padding-bottom: .5em;">
                                 <div class="ui radio checkbox">
                                     <input id="choice-1" type="radio" name="noIssues" checked="">
-                                    <label for="choice-1">Esta é a primeira SRD da demanda</label>
+                                    <label for="choice-1">Esta é a primeira SRD da atividade</label>
                                 </div>
                             </div>
                             <div class="field">
                                 <div class="ui radio checkbox">
                                     <input id="choice-2" type="radio" name="noIssues">
-                                    <label for="choice-2">Esta demanda ainda não está em testes</label>
+                                    <label for="choice-2">Esta atividade ainda não está em testes</label>
                                 </div>
                             </div>
                             <div class="field">
@@ -222,7 +221,7 @@
                     <br />
                     <div class="ui secondary large menu">
                         <a class="active item" id="btnPrevStep3">
-                            <i class="long arrow left icon"></i> Voltar
+                             <i class="long arrow left icon"></i> Voltar
                         </a>
                         <div class="right menu">
                             <a class="active item" id="btnNextStep3">
@@ -241,23 +240,23 @@
                             <div class="ui secondary inverted segment">
                                 <div class="ui teal ribbon label">SM</div>
                                 <p>Release 9</p>
-                                <div class="ui teal ribbon label">Demanda</div>
+                                <div class="ui teal ribbon label">Atividade</div>
                                 <p>D22344: Um teste de demanda em homologação</p>
                                 <div class="ui teal ribbon label">Revisions</div>
                                 <p>12122, 12334, 44323, 55456</p>
                                 <div class="ui teal ribbon label">Issues</div>
-                                <p>Esta demanda ainda não está em testes</p>
+                                <p>Esta atividade ainda não está em testes</p>
                             </div>
                         </div>
                     </div>
                     <br />
                     <div class="ui secondary large menu">
                         <a class="active item" id="btnPrevStep4">
-                            <i class="long arrow left icon"></i> Voltar
+                             <i class="long arrow left icon"></i> Voltar
                         </a>
                         <div class="right menu">
                             <a class="active item" id="btnNextStep4">
-                                <i class="checkmark icon"></i> Confirmar
+                                 <i class="checkmark icon"></i> Confirmar
                             </a>
                         </div>
                     </div>
@@ -271,16 +270,14 @@
                     </div>
                     <br />
                     <div class="ui huge buttons">
-                        <a class="ui primary button" href="${pageContext.request.contextPath}/sr/add">Nova Solicitação
-                        </a>
+                        <a class="ui primary button" href="${linkTo[SolicitacaoReintegrateController].add}">Nova Solicitação</a>
                         <div class="or"></div>
-                        <a class="ui secondary button" href="${pageContext.request.contextPath}">Dashboard
-                        </a>
+                        <a class="ui secondary button" href="${linkTo[DashboardController].index}">Dashboard</a>
                     </div>
                 </div>
             </div>
         </div>
-      
+
         <!-- Modal -->
         <div class="ui basic modal" id="modalInfo">
              <i class="close icon"></i>
@@ -297,7 +294,7 @@
             </div>
         </div>
         <div class="ui basic modal" id="modalAddSM">
-             <i class="close icon"></i>
+            <i class="close icon"></i>
             <div class="header">Nova SM</div>
             <div class="content">
                 <div class="left">
@@ -310,14 +307,14 @@
                 <div class="ui button">Okay</div>
             </div>
         </div>
-        <div class="ui basic modal" id="modalAddDemand">
+        <div class="ui basic modal" id="modalAddActivity">
              <i class="close icon"></i>
-            <div class="header">Nova Demanda</div>
+            <div class="header">Nova Atividade</div>
             <div class="content">
                 <div class="left">
                      <i class="info icon"></i>
                 </div>
-                <div class="right">Solicite ao reintegrador a inclusão de uma nova demanda para seleção.
+                <div class="right">Solicite ao reintegrador a inclusão de uma nova atividade para seleção.
                 </div>
             </div>
             <div class="actions">
@@ -352,8 +349,8 @@
                 // eh necessario para que o checkbox recupere a sua acao padrao
                 checkboxOnChange();
             });
-            
-            // API Semantic-UI Checkbox
+
+             // API Semantic-UI Checkbox
             $('#noIssue').checkbox({
                 onChange: function() {
                     $('#fieldMotivo,#fieldIssues').toggle(400);
@@ -367,65 +364,68 @@
             $('#modalAddSM')
                 .modal('attach events', '#btnAddSM', 'show')
                 .modal('setting', 'transition', 'vertical flip');
-            $('#modalAddDemand')
-                .modal('attach events', '#btnAddDemand', 'show')
+            $('#modalAddActivity')
+                .modal('attach events', '#btnAddActivity', 'show')
                 .modal('setting', 'transition', 'vertical flip');
 
              // API Semantic-UI Dropdown
             $('#dropdownSM').dropdown({
-	              onChange: function() {
-	                  $('#formStep1').addClass('loading');
-	                  // aqui deve ser efetuada uma chamada ajax pesquisando pelo escopo da SM escolhida
-	                  // e populando o dropdown de demandas.
-	                  var id = $("#selectedSM").val();
-	                  $.get("${pageContext.request.contextPath}/sm/filter/" + id, function(data) {
-	                      // simulacao de retorno do ajax
-	                      $.each(data.atividades, function() {
-	                       $("#dropdownDemand .menu").append('<div class="item" data-value="'+this.id+'">'+this.descricao+'</div>');
-	                      });
-	                      $('#dropdownDemand').dropdown();
-	                      $('#field2step1').removeClass('disabled');
-	                      $('#formStep1').removeClass('loading');
-	                  }, "json");
-	              }
-	          });
-			$('#btnNextStep1').click(function(){
-				$('#formStep1').addClass('loading');
-				var id = $("#nrDemanda").val();
-				$.get("${pageContext.request.contextPath}/atividade/filter/" + id, function(data) {
-					// simulacao de retorno do ajax
-					$.each(data.revisions, function() {
-						var tr = '<tr>'
-									+'<td>'
-                                        +'<div class="ui toggle checkbox">'
-                                            +'<input type="checkbox" name="revisions" value="'+this.numero+'" id="r'+this.numero+'">'
-                                            +'<label>'+this.numero+'</label>'
-                                        +'</div>'
-                                    +'</td>'
-                                    +'<td>'+this.autor+'</td>'
-                                    +'<td>'+this.data+' <i class="time icon"></i> '+this.data+'</td>'
-                                    +'<td>'+this.descricao+'</td>'
-                                +'</tr>';
+                onChange: function() {
+                    $('#formStep1').addClass('loading');
+                    var id = $("#selectedSM").val();
+                    $.get("${pageContext.request.contextPath}/sm/filter/" + id, function(data) {
+                        $.each(data.atividades, function() {
+                            $("#dropdownActivity .menu").append('<div class="item" data-value="' + this.id + '">' + this.descricao + '</div>');
+                        });
+                        $('#dropdownActivity').dropdown();
+                        $('#field2step1').removeClass('disabled');
+                        $('#formStep1').removeClass('loading');
+                    }, "json");
+                }
+            });
 
-						$("#tableRevisions tbody").append(tr);
-					});
-					$('#formStep1').removeClass('loading');
-				}, "json");
-			});
-
-
-             // API Semantic-UI Step
+            // API Semantic-UI Step
             var regexpBtnStep = /^btn(Next|Prev)Step/,
                 regexpBtnNext = /^btn(Next)Step/;
+            var changeStep = function(tagId) {
+                    if (regexpBtnStep.test(tagId)) {
+                        var id = parseInt(tagId.replace(regexpBtnStep, ''));
+                        $('#formStep' + id).hide(300);
+                        $('#step' + id).removeClass('active').addClass('disabled');
+                        var change = regexpBtnNext.test(tagId) ? id + 1 : id - 1;
+                        $('#formStep' + change).show(300);
+                        $('#step' + change).removeClass('disabled').addClass('active');
+                    }
+                },
+                getRevisions = function(tagId) {
+                    $('#formStep1').addClass('loading');
+                    var id = $("#nrActivity").val();
+                    $.get("${pageContext.request.contextPath}/atividade/filter/" + id, function(data) {
+                        $.each(data.revisions, function() {
+                            var tr = '<tr>' + 
+                                        '<td>' + 
+                                            '<div class="ui toggle checkbox">' + 
+                                                '<input type="checkbox" name="revisions" value="' + this.numero + '" id="r' + this.numero + '">' + 
+                                                '<label>' + this.numero + '</label>' + 
+                                            '</div>' + 
+                                        '</td>' + 
+                                        '<td>' + this.autor + '</td>' + 
+                                        '<td>' + this.data + ' <i class="time icon"></i> ' + this.data + '</td>' + 
+                                        '<td>' + this.descricao + '</td>' + 
+                                     '</tr>';
+                            $("#tableRevisions tbody").append(tr);
+                        });
+                        $('#formStep1').removeClass('loading');
+                        changeStep(tagId);
+                    }, "json");
+                };
+
             $('.ui.secondary.menu .item').click(function() {
                 var tagId = $(this).attr('id');
-                if (regexpBtnStep.test(tagId)) {
-                    var id = parseInt(tagId.replace(regexpBtnStep, ''));
-                    $('#formStep' + id).hide(300);
-                    $('#step' + id).removeClass('active').addClass('disabled');
-                    var change = regexpBtnNext.test(tagId) ? id + 1 : id - 1;
-                    $('#formStep' + change).show(300);
-                    $('#step' + change).removeClass('disabled').addClass('active');
+                if (tagId == 'btnNextStep1') {
+                    getRevisions(tagId);
+                } else {
+                    changeStep(tagId);
                 }
             });
         </script>
