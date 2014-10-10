@@ -1,10 +1,12 @@
 package br.com.jarvis.model;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
@@ -18,6 +20,9 @@ public class SolicitacaoMudanca extends DAO {
 	private Long id;
 	private String nome;
 	private Date data;
+	
+	@OneToMany
+	private List<Atividade> atividades;
 
 	public Long getId() {
 		return id;
@@ -36,6 +41,12 @@ public class SolicitacaoMudanca extends DAO {
 	}
 	public void setData(Date data) {
 		this.data = data;
+	}
+	public List<Atividade> getAtividades() {
+		return atividades;
+	}
+	public void setAtividades(List<Atividade> atividades) {
+		this.atividades = atividades;
 	}
 	
 	@Override

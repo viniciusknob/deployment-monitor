@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <html>
 
     <head>
@@ -10,7 +12,7 @@
         <!-- Site Properities -->
         <title>Deployment Monitor - Nova Solicitação</title>
         <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
-        <link rel="stylesheet" type="text/css" href="semantic-ui-0.19.3/css/semantic.min.css">
+        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/semantic-ui-0.19.3/css/semantic.min.css">
         <style>
             /*******************************
                         Global
@@ -90,12 +92,13 @@
                                 Minha SM não existe!
                             </a>
                             <div class="ui fluid selection dropdown" id="dropdownSM">
-                                <input type="hidden" name="sm">
+                                <input type="hidden" name="sm" id="selectedSM">
                                 <div class="default text">Selecione...</div>
                                  <i class="dropdown icon"></i>
                                 <div class="menu">
-                                    <div class="item" data-value="id1">Release 9</div>
-                                    <div class="item" data-value="id2">CRQ00000012345</div>
+                                	<c:forEach items="${listSM}" var="sm">
+                                    	<div class="item" data-value="${sm.id}">${sm.nome}</div>
+                                    </c:forEach>
                                 </div>
                             </div>
                         </div>
@@ -107,13 +110,14 @@
                                 Minha demanda não existe!
                             </a>
                             <div class="ui fluid selection dropdown" id="dropdownDemand">
-                                <input type="hidden" name="demanda">
+                                <input type="hidden" name="demanda" id="nrDemanda">
                                 <div class="default text">Selecione...</div>
                                  <i class="dropdown icon"></i>
                                 <div class="menu">
-                                    <div class="item" data-value="id1">12345: Uma demanda</div>
+                                    <!-- <div class="item" data-value="id1">12345: Uma demanda</div>
                                     <div class="item" data-value="id2">456: Um QC</div>
                                     <div class="item" data-value="id3">567890: Um INC</div>
+                                    -->
                                 </div>
                             </div>
                         </div>
@@ -142,7 +146,8 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
+<!--
+                                 <tr>
                                     <td>
                                         <div class="ui toggle checkbox">
                                             <input type="checkbox" name="revisions[0]" value="22356" id="22356">
@@ -153,83 +158,7 @@
                                     <td>06 Jun, 2014 <i class="time icon"></i> 13:06</td>
                                     <td>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</td>
                                 </tr>
-                                <tr>
-                                    <td>
-                                        <div class="ui toggle checkbox">
-                                            <input type="checkbox" name="revisions[1]" value="22357" id="22357">
-                                            <label>22357</label>
-                                        </div>
-                                    </td>
-                                    <td>viniciusknob</td>
-                                    <td>06 Jun, 2014 <i class="time icon"></i> 13:21</td>
-                                    <td>Lorem ipsum dolor sit amet, consectetuer adipiscing elit</td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="ui toggle checkbox">
-                                            <input type="checkbox" name="revisions[2]" value="22358" id="22358">
-                                            <label>22358</label>
-                                        </div>
-                                    </td>
-                                    <td>viniciusknob</td>
-                                    <td>06 Jun, 2014 <i class="time icon"></i> 13:34</td>
-                                    <td>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="ui toggle checkbox">
-                                            <input type="checkbox" name="revisions[3]" value="22359" id="22359">
-                                            <label>22359</label>
-                                        </div>
-                                    </td>
-                                    <td>viniciusknob</td>
-                                    <td>06 Jun, 2014 <i class="time icon"></i> 14:12</td>
-                                    <td>Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.</td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="ui toggle checkbox">
-                                            <input type="checkbox" name="revisions[4]" value="22363" id="22363">
-                                            <label>22363</label>
-                                        </div>
-                                    </td>
-                                    <td>viniciusknob</td>
-                                    <td>07 Jun, 2014 <i class="time icon"></i> 08:02</td>
-                                    <td>Quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.</td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="ui toggle checkbox">
-                                            <input type="checkbox" name="revisions[5]" value="22364" id="22364">
-                                            <label>22364</label>
-                                        </div>
-                                    </td>
-                                    <td>viniciusknob</td>
-                                    <td>07 Jun, 2014 <i class="time icon"></i> 08:04</td>
-                                    <td>Tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.</td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="ui toggle checkbox">
-                                            <input type="checkbox" name="revisions[6]" value="22367" id="22367">
-                                            <label>22367</label>
-                                        </div>
-                                    </td>
-                                    <td>viniciusknob</td>
-                                    <td>07 Jun, 2014 <i class="time icon"></i> 08:55</td>
-                                    <td>Ut wisi minim veniam, quis tation ullamcorper suscipit ut aliquip ex ea commodo.</td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="ui toggle checkbox">
-                                            <input type="checkbox" name="revisions[7]" value="22377" id="22377">
-                                            <label>22377</label>
-                                        </div>
-                                    </td>
-                                    <td>viniciusknob</td>
-                                    <td>08 Jun, 2014 <i class="time icon"></i> 12:33</td>
-                                    <td>Wisi enim veniam, tation ullamcorper suscipit ut aliquip ex ea commodo consequat.</td>
-                                </tr>
+-->
                             </tbody>
                         </table>
                     </div>
@@ -342,11 +271,11 @@
                     </div>
                     <br />
                     <div class="ui huge buttons">
-                        <div class="ui primary button">Nova Solicitação
-                        </div>
+                        <a class="ui primary button" href="${pageContext.request.contextPath}/sr/add">Nova Solicitação
+                        </a>
                         <div class="or"></div>
-                        <div class="ui secondary button">Dashboard
-                        </div>
+                        <a class="ui secondary button" href="${pageContext.request.contextPath}">Dashboard
+                        </a>
                     </div>
                 </div>
             </div>
@@ -397,9 +326,9 @@
         </div>
 
         <!-- Scripts -->
-        <script src="js/jquery-1.11.1.min.js"></script>
-        <script src="semantic-ui-0.19.3/js/semantic.min.js"></script>
-        <script src="semantic-ui-0.19.3/js/tablesort.js"></script>
+        <script src="${pageContext.request.contextPath}/js/jquery-1.11.1.min.js"></script>
+        <script src="${pageContext.request.contextPath}/semantic-ui-0.19.3/js/semantic.min.js"></script>
+        <script src="${pageContext.request.contextPath}/semantic-ui-0.19.3/js/tablesort.js"></script>
         <script>
             // APIs Semantic-ui Checkbox e Tablesort - Resolução de conflitos
             var checkboxRevisionsCheckedCache = [],
@@ -444,18 +373,46 @@
 
              // API Semantic-UI Dropdown
             $('#dropdownSM').dropdown({
-                    onChange: function() {
-                        $('#formStep1').addClass('loading');
-                        // aqui deve ser efetuada uma chamada ajax pesquisando pelo escopo da SM escolhida
-                        // e populando o dropdown de demandas.
-                        setTimeout(function() {
-                            // simulacao de retorno do ajax
-                            $('#dropdownDemand').dropdown();
-                            $('#field2step1').removeClass('disabled');
-                            $('#formStep1').removeClass('loading');
-                        }, 2000);
-                    }
-                });
+	              onChange: function() {
+	                  $('#formStep1').addClass('loading');
+	                  // aqui deve ser efetuada uma chamada ajax pesquisando pelo escopo da SM escolhida
+	                  // e populando o dropdown de demandas.
+	                  var id = $("#selectedSM").val();
+	                  $.get("${pageContext.request.contextPath}/sm/filter/" + id, function(data) {
+	                      // simulacao de retorno do ajax
+	                      $.each(data.atividades, function() {
+	                       $("#dropdownDemand .menu").append('<div class="item" data-value="'+this.id+'">'+this.descricao+'</div>');
+	                      });
+	                      $('#dropdownDemand').dropdown();
+	                      $('#field2step1').removeClass('disabled');
+	                      $('#formStep1').removeClass('loading');
+	                  }, "json");
+	              }
+	          });
+			$('#btnNextStep1').click(function(){
+				$('#formStep1').addClass('loading');
+				var id = $("#nrDemanda").val();
+				$.get("${pageContext.request.contextPath}/atividade/filter/" + id, function(data) {
+					// simulacao de retorno do ajax
+					$.each(data.revisions, function() {
+						var tr = '<tr>'
+									+'<td>'
+                                        +'<div class="ui toggle checkbox">'
+                                            +'<input type="checkbox" name="revisions" value="'+this.numero+'" id="r'+this.numero+'">'
+                                            +'<label>'+this.numero+'</label>'
+                                        +'</div>'
+                                    +'</td>'
+                                    +'<td>'+this.autor+'</td>'
+                                    +'<td>'+this.data+' <i class="time icon"></i> '+this.data+'</td>'
+                                    +'<td>'+this.descricao+'</td>'
+                                +'</tr>';
+
+						$("#tableRevisions tbody").append(tr);
+					});
+					$('#formStep1').removeClass('loading');
+				}, "json");
+			});
+
 
              // API Semantic-UI Step
             var regexpBtnStep = /^btn(Next|Prev)Step/,

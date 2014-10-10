@@ -1,11 +1,12 @@
 package br.com.jarvis.model;
 
 import java.util.Date;
-import java.util.List;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
+@Entity
 public class SolicitacaoReintegrate extends DAO {
 	private static final long serialVersionUID = -3243325451385363424L;
 	
@@ -14,7 +15,7 @@ public class SolicitacaoReintegrate extends DAO {
 	private Long id;
 	private SolicitacaoMudanca sm;
 	private Atividade atividade;
-	private List<Integer> revisions;
+	private String revisions; //TODO verificar como transformar em list... hibernate reclamou com list
 	private String motivos;
 	private Date data = new Date();
 	private Status status = Status.PENDENTE_REINTEGRATE;
@@ -37,10 +38,10 @@ public class SolicitacaoReintegrate extends DAO {
 	public void setAtividade(Atividade atividade) {
 		this.atividade = atividade;
 	}
-	public List<Integer> getRevisions() {
+	public String getRevisions() {
 		return revisions;
 	}
-	public void setRevisions(List<Integer> revisions) {
+	public void setRevisions(String revisions) {
 		this.revisions = revisions;
 	}
 	public String getMotivos() {

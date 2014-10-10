@@ -3,17 +3,20 @@ package br.com.jarvis.model;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
-@Entity
+@Entity(name="atividade")
 public class Atividade extends DAO {
 	private static final long serialVersionUID = 4821907415936465317L;
 
 	@Id 
 	@GeneratedValue
 	private Long id;
-	private TipoAtividade tipoAtividade;
 	private String descricao;
 	private String branch;
+	
+	@ManyToOne
+	private SolicitacaoMudanca sm;
 	
 	@Override
 	public Long getId() {
@@ -32,19 +35,19 @@ public class Atividade extends DAO {
 		this.id = id;
 	}
 
-	public TipoAtividade getTipoAtividade() {
-		return tipoAtividade;
-	}
-
-	public void setTipoAtividade(TipoAtividade tipoAtividade) {
-		this.tipoAtividade = tipoAtividade;
-	}
-
 	public String getBranch() {
 		return branch;
 	}
 
 	public void setBranch(String branch) {
 		this.branch = branch;
+	}
+
+	public SolicitacaoMudanca getSm() {
+		return sm;
+	}
+
+	public void setSm(SolicitacaoMudanca sm) {
+		this.sm = sm;
 	}
 }

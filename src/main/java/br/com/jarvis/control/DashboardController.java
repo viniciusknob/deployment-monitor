@@ -14,4 +14,9 @@ public class DashboardController extends SuperController {
 		List<SolicitacaoMudanca> sms = DAO.getAll(SolicitacaoMudanca.class);
 		result.include("sms", sms);
 	}
+
+	@Path("/filter/sm/{id}")
+	public void filter(Long id) {
+		
+	}
 }

@@ -14,6 +14,10 @@ public class SolicitacaoMudancaController extends SuperController {
 		result.include("list", DAO.getAll(SolicitacaoMudanca.class));
 	}
 	
+	@Path("/add")
+	public void add() {
+	}
+	
 	@Post("/save")
 	public void save(SolicitacaoMudanca sm) {
 		if (sm.getId() != null) {
@@ -39,5 +43,11 @@ public class SolicitacaoMudancaController extends SuperController {
 		result.include("sm", sm);
 		list();
 		result.of(this).list();
+	}
+	
+	@Path("/filter/{id}")
+	public void filter(Long id) {
+		SolicitacaoMudanca sm = DAO.getByID(SolicitacaoMudanca.class, id);
+		result.include("sm", sm);
 	}
 }

@@ -11,7 +11,7 @@
         <!-- Site Properities -->
         <title>Deployment Monitor</title>
         <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
-        <link rel="stylesheet" type="text/css" href="semantic-ui-0.19.3/css/semantic.min.css">
+        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/semantic-ui-0.19.3/css/semantic.min.css">
         <style>
             /***** Custom *****/
             html, body {
@@ -271,9 +271,9 @@
         </div>
       
         <!-- Scripts -->
-        <script src="js/jquery-1.11.1.min.js"></script>
-        <script src="semantic-ui-0.19.3/js/semantic.min.js"></script>
-        <script src="semantic-ui-0.19.3/js/tablesort.js"></script>
+        <script src="${pageContext.request.contextPath}/js/jquery-1.11.1.min.js"></script>
+        <script src="${pageContext.request.contextPath}/semantic-ui-0.19.3/js/semantic.min.js"></script>
+        <script src="${pageContext.request.contextPath}/semantic-ui-0.19.3/js/tablesort.js"></script>
         <script>
             $('#modalInfo')
                 .modal('attach events', '#btnInfo', 'show')
