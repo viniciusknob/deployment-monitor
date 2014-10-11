@@ -338,7 +338,10 @@
                 onChange: function() {
                     $('#formStep1').addClass('loading');
                     var id = $("#selectedSM").val();
-                    $.get("${pageContext.request.contextPath}/sr/sm/" + id, function(data) {
+                    $.ajax({
+                        url: "${pageContext.request.contextPath}/api/sm/" + id,
+                        contentType: 'application/json'
+                    }).then(function(data) {
                     	if (data.solicitacaoMudanca.atividades) {
 	                        $.each(data.solicitacaoMudanca.atividades, function() {
 	                            $("#dropdownActivity .menu").append('<div class="item" data-value="' + this.id + '">' + this.descricao + '</div>');
@@ -349,7 +352,7 @@
                         $('#dropdownActivity').dropdown();
                         $('#field2step1').removeClass('disabled');
                         $('#formStep1').removeClass('loading');
-                    }, "json");
+                    });
                 }
             });
 
@@ -369,7 +372,10 @@
                 getRevisions = function(tagId) {
                     $('#formStep1').addClass('loading');
                     var id = $("#nrAtividade").val();
-                    $.get("${pageContext.request.contextPath}/atividade/filter/" + id, function(data) {
+                    $.ajax({
+                        url: "${pageContext.request.contextPath}/api/atividade/" + id,
+                        contentType: 'application/json'
+                    }).then(function(data) {
                        	$("#tableRevisions tbody tr").remove();
                         $.each(data.list, function() {
                             var tr = '<tr>' + 
@@ -388,7 +394,7 @@
                         });
                         $('#formStep1').removeClass('loading');
                         changeStep(tagId);
-                    }, "json");
+                    });
                 };
 
             $('.ui.secondary.menu .item').click(function() {

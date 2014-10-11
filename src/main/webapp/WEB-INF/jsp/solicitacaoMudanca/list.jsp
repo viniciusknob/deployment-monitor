@@ -8,6 +8,7 @@
 <title>Solicitações de Mudança</title>
 </head>
 <body>
+	<a href="${linkTo[DashboardController].index}">Voltar</a><br/>
 	<c:url value="/sm/save" var="save"/>
 	<form action="${save}" method="POST">
 		<input type="hidden" name="sm.id" value="${sm.id}"/>
@@ -19,8 +20,8 @@
 	<c:forEach items="${list}" var="sm">
 		<c:url value="/sm/edit/${sm.id}" var="edit"/>
 		<c:url value="/sm/delete/${sm.id}" var="delete"/>
-		<a href="${edit}">Editar</a>
-		<a href="${delete}">Remover</a>
+		<a id="ed${sm.id}" href="${edit}">Editar</a>
+		<a id="rm${sm.id}" href="${delete}">Remover</a>
 		${sm.nome} - <fmt:formatDate value="${sm.data}" pattern="dd/MM/yyyy"/><br/>
 	</c:forEach>
 </body>

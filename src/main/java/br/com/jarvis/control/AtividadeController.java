@@ -1,14 +1,10 @@
 package br.com.jarvis.control;
 
-import java.util.List;
-
 import br.com.caelum.vraptor.Controller;
 import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Post;
-import br.com.caelum.vraptor.view.Results;
 import br.com.jarvis.model.Atividade;
 import br.com.jarvis.model.DAO;
-import br.com.jarvis.model.Revision;
 import br.com.jarvis.model.SolicitacaoMudanca;
 
 @Path("/atividade")
@@ -50,12 +46,5 @@ public class AtividadeController extends SuperController {
 		result.include("atividade", atividade);
 		list();
 		result.of(this).list();
-	}
-
-	@Path("/filter/{id}")
-	public void filter(Long id) {
-		Atividade atividade = DAO.getByID(Atividade.class, id);
-		List<Revision> svnRevisions = Revision.getAll(atividade.getBranch());
-		result.use(Results.json()).from(svnRevisions).serialize();
 	}
 }

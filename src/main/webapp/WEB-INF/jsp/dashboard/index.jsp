@@ -66,7 +66,7 @@
                     <div class="ui sub menu">
                          <a class="active item">Tudo</a>
                          <c:forEach items="${sms}" var="sm">
-                             <a class="item" href="${linkTo[SolicitacaoMudancaController].filter(sm.id)}">${sm.nome}</a>
+                             <a class="item" href="${linkTo[DashboardController].filter(sm.id)}">${sm.nome}</a>
                          </c:forEach>
                     </div>
                 </div>

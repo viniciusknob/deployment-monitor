@@ -8,6 +8,7 @@
 <title>Atividades</title>
 </head>
 <body>
+	<a href="${linkTo[DashboardController].index}">Voltar</a><br/>
 	<form action="${linkTo[AtividadeController].save}" method="POST">
 		<input type="hidden" name="atividade.id" value="${atividade.id}"/>
 		<input type="text" name="atividade.descricao" value="${atividade.descricao}" placeholder="Descrição"/><br/>
@@ -21,8 +22,8 @@
 		<input type="submit" value="Salvar"/><br/>
 	</form>
 	<c:forEach items="${atividades}" var="atividade">
-		<a href="${linkTo[AtividadeController].edit(atividade.id)}">Editar</a>
-		<a href="${linkTo[AtividadeController].delete(atividade.id)}">Remover</a>
+		<a id="ed${atividade.id}" href="${linkTo[AtividadeController].edit(atividade.id)}">Editar</a>
+		<a id="rm${atividade.id}" href="${linkTo[AtividadeController].delete(atividade.id)}">Remover</a>
 		${atividade.sm.nome} - ${atividade.descricao}<br/>
 	</c:forEach>
 </body>

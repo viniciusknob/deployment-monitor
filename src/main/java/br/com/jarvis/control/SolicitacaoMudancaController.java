@@ -3,7 +3,6 @@ package br.com.jarvis.control;
 import br.com.caelum.vraptor.Controller;
 import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Post;
-import br.com.caelum.vraptor.view.Results;
 import br.com.jarvis.model.DAO;
 import br.com.jarvis.model.SolicitacaoMudanca;
 
@@ -44,11 +43,5 @@ public class SolicitacaoMudancaController extends SuperController {
 		result.include("sm", sm);
 		list();
 		result.of(this).list();
-	}
-	
-	@Path("/{id}")
-	public void filter(Long id) {
-		SolicitacaoMudanca sm = DAO.getByID(SolicitacaoMudanca.class, id);
-		result.use(Results.json()).from(sm).serialize();
 	}
 }
