@@ -21,7 +21,7 @@ public class SolicitacaoMudanca extends DAO {
 	private String nome;
 	private Date data;
 	
-	@OneToMany
+	@OneToMany(mappedBy="sm")
 	private List<Atividade> atividades;
 
 	public Long getId() {

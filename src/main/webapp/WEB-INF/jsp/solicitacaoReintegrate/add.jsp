@@ -87,7 +87,7 @@
                         <div class="field">
                             <div class="ui pointing below black label">SM
                             </div>
-                            <a class="ui pointing below label" id="btnAddSM" style="float: right;">
+                            <a class="ui pointing below label" href="${linkTo[SolicitacaoMudancaController].list()}" id="btnAddSM" style="float: right;">
                                 Minha SM não existe!
                             </a>
                             <div class="ui fluid selection dropdown" id="dropdownSM">
@@ -104,7 +104,7 @@
                         <div class="disabled field" id="field2step1">
                             <div class="ui pointing below black label">Atividade
                             </div>
-                            <a class="ui pointing below label" id="btnAddActivity" style="float: right;">
+                            <a class="ui pointing below label" href="${linkTo[AtividadeController].list()}" id="btnAddActivity" style="float: right;">
                                 Minha atividade não existe!
                             </a>
                             <div class="ui fluid selection dropdown" id="dropdownActivity">
@@ -293,34 +293,6 @@
                 <div class="ui button">Okay</div>
             </div>
         </div>
-        <div class="ui basic modal" id="modalAddSM">
-            <i class="close icon"></i>
-            <div class="header">Nova SM</div>
-            <div class="content">
-                <div class="left">
-                     <i class="info icon"></i>
-                </div>
-                <div class="right">Solicite ao reintegrador a inclusão de uma nova SM para seleção.
-                </div>
-            </div>
-            <div class="actions">
-                <div class="ui button">Okay</div>
-            </div>
-        </div>
-        <div class="ui basic modal" id="modalAddActivity">
-             <i class="close icon"></i>
-            <div class="header">Nova Atividade</div>
-            <div class="content">
-                <div class="left">
-                     <i class="info icon"></i>
-                </div>
-                <div class="right">Solicite ao reintegrador a inclusão de uma nova atividade para seleção.
-                </div>
-            </div>
-            <div class="actions">
-                <div class="ui button">Okay</div>
-            </div>
-        </div>
 
         <!-- Scripts -->
         <script src="${pageContext.request.contextPath}/js/jquery-1.11.1.min.js"></script>
@@ -361,22 +333,21 @@
             $('#modalInfo')
                 .modal('attach events', '#btnInfo', 'show')
                 .modal('setting', 'transition', 'vertical flip');
-            $('#modalAddSM')
-                .modal('attach events', '#btnAddSM', 'show')
-                .modal('setting', 'transition', 'vertical flip');
-            $('#modalAddActivity')
-                .modal('attach events', '#btnAddActivity', 'show')
-                .modal('setting', 'transition', 'vertical flip');
 
              // API Semantic-UI Dropdown
             $('#dropdownSM').dropdown({
                 onChange: function() {
                     $('#formStep1').addClass('loading');
                     var id = $("#selectedSM").val();
-                    $.get("${pageContext.request.contextPath}/sm/filter/" + id, function(data) {
-                        $.each(data.atividades, function() {
-                            $("#dropdownActivity .menu").append('<div class="item" data-value="' + this.id + '">' + this.descricao + '</div>');
-                        });
+                    $.get("${pageContext.request.contextPath}/sr/sm/" + id, function(data) {
+                    	console.log(data);
+                    	if (data.solicitacaoMudanca.atividades) {
+	                        $.each(data.solicitacaoMudanca.atividades, function() {
+	                            $("#dropdownActivity .menu").append('<div class="item" data-value="' + this.id + '">' + this.descricao + '</div>');
+	                        });
+                    	} else {
+                    		alert("Nenhuma atividade cadastrada para essa SM.");//TODO
+                    	}
                         $('#dropdownActivity').dropdown();
                         $('#field2step1').removeClass('disabled');
                         $('#formStep1').removeClass('loading');
@@ -399,7 +370,7 @@
                 },
                 getRevisions = function(tagId) {
                     $('#formStep1').addClass('loading');
-                    var id = $("#nrActivity").val();
+                    var id = $("#nrAtividade").val();
                     $.get("${pageContext.request.contextPath}/atividade/filter/" + id, function(data) {
                         $.each(data.revisions, function() {
                             var tr = '<tr>' + 

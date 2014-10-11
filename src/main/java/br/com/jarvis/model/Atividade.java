@@ -3,9 +3,10 @@ package br.com.jarvis.model;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-@Entity(name="atividade")
+@Entity
 public class Atividade extends DAO {
 	private static final long serialVersionUID = 4821907415936465317L;
 
@@ -16,6 +17,7 @@ public class Atividade extends DAO {
 	private String branch;
 	
 	@ManyToOne
+	@JoinColumn(name="sm_id")
 	private SolicitacaoMudanca sm;
 	
 	@Override
