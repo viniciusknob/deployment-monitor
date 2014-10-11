@@ -229,15 +229,34 @@
                             </table>
                         </div>
                     </div>
+                      
+                    <!-- Tabela de Atividades -->
                     <div class="column">
                         <h5 class="ui top attached header">
-                            Próximo Deploy
-                            <div class="ui teal label" style="float: right;">16h</div>
+                            Atividades
                         </h5>
                         <div class="ui segment attached">
-                            <table class="ui middle aligned compact basic mini sortable table" id="table">
-                                <thead></thead>
-                                <tbody></tbody>
+                            <table class="ui middle aligned compact basic mini sortable table" id="tableActivities">
+                                <thead>
+                                    <tr>
+                                        <th>Descrição</th>
+                                        <th>Branch</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>D22323: Uma demanda de teste</td>
+                                        <td>https://github.com/viniciusknob/deployment-monitor</td>
+                                    </tr>
+                                    <tr>
+                                        <td>QC323: Um bug encontrado</td>
+                                        <td>https://github.com/nicolasbouvie/deployment-monitor</td>
+                                    </tr>
+                                    <tr>
+                                        <td>INC123459: Um incidente em produção</td>
+                                        <td>https://github.com/gelias/dojo-vraptor4</td>
+                                    </tr>
+                                </tbody>
                             </table>
                         </div>
                     </div>
@@ -281,7 +300,7 @@
             $('#modalInfo')
                 .modal('attach events', '#btnInfo', 'show')
                 .modal('setting', 'transition', 'vertical flip');
-            $('#tableLatestSolicitations').tablesort();
+            $('#tableLatestSolicitations,#tableActivities').tablesort();
         </script>
   </body>
 </html>
