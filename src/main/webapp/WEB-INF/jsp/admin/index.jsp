@@ -4,7 +4,6 @@
 <!DOCTYPE html>
 <!--
     Tarefas:
-        Para como parâmetro de cada function loadActivities o id da SM: ${sm.id}
         Alterar btnActivityRecord por btnActivityRecord${activity.id}
 -->
 <html>
@@ -15,7 +14,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
         <!-- Site Properities -->
-        <title>Deployment Monitor - Área Administrativa</title>
+        <title>Deployment Monitor - ï¿½rea Administrativa</title>
         <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" type="text/css" href="semantic-ui-0.19.3/css/semantic.min.css">
         <style>
@@ -58,7 +57,7 @@
                 <div class="ui tiered teal menu">
                     <div class="menu">
                         <a class="active item">
-                             <i class="settings icon"></i> Área Administrativa
+                             <i class="settings icon"></i> ï¿½rea Administrativa
                         </a>
                         <div class="right menu">
                             <a class="item" href="${linkTo[DashboardController].index}">
@@ -70,10 +69,10 @@
                         </div>
                         <div class="ui sub menu">
                             <a class="active item">
-                                 <i class="desktop icon"></i> O que está acontecendo...
+                                 <i class="desktop icon"></i> O que estï¿½ acontecendo...
                             </a>
                             <a class="item">
-                                 <i class="briefcase icon"></i> Histórico
+                                 <i class="briefcase icon"></i> Histï¿½rico
                             </a>
                         </div>
                     </div>
@@ -81,10 +80,10 @@
 
                 <div class="ui grid">
                     <div class="twelve wide column">
-                        <!-- Tabela: Solicitações de Mudança -->
+                        <!-- Tabela: Solicitaï¿½ï¿½es de Mudanï¿½a -->
                         <div id="divChangeRequest">
                             <h5 class="ui inverted top attached teal header">
-                                Solicitações de Mudança
+                                Solicitaï¿½ï¿½es de Mudanï¿½a
                             </h5>
                             <div class="ui segment attached">
                                 <table class="ui middle aligned compact small basic sortable table" id="tableSMs">
@@ -92,30 +91,30 @@
                                         <tr>
                                             <th>Data/Hora</th>
                                             <th>Nome</th>
-                                            <th>Ações</th>
+                                            <th>Aï¿½ï¿½es</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-	                                    <c:forEach items="${sms}" var="sm">
-											<tr>
-	                                            <td contenteditable="true">
-	                                            	<fmt:formatDate value="${sm.data}" pattern="dd MMM, yyyy"/>
-	                                            </td>
-	                                            <td contenteditable="true">
-	                                            	${sm.nome}
-	                                            </td>
-	                                            <td>
-	                                                <div class="ui mini basic button" id="btnSMRecord${sm.id}">
-	                                                     <i class="hdd icon"></i>
-	                                                    Arquivar
-	                                                </div>
-	                                                <div class="ui mini basic button" onclick="loadActivities(${sm.id})">
-	                                                     <i class="tasks icon"></i>
-	                                                    Escopo
-	                                                </div>
-	                                            </td>
-	                                        </tr>
-										</c:forEach>
+                                      <c:forEach items="${sms}" var="sm">
+                      <tr>
+                                              <td contenteditable="true">
+                                                <fmt:formatDate value="${sm.data}" pattern="dd MMM, yyyy"/>
+                                              </td>
+                                              <td contenteditable="true">
+                                                ${sm.nome}
+                                              </td>
+                                              <td>
+                                                  <div class="ui mini basic button" id="btnSMRecord${sm.id}">
+                                                       <i class="hdd icon"></i>
+                                                      Arquivar
+                                                  </div>
+                                                  <div class="ui mini basic button" onclick="loadActivities(${sm.id})">
+                                                       <i class="tasks icon"></i>
+                                                      Escopo
+                                                  </div>
+                                              </td>
+                                          </tr>
+                    </c:forEach>
                                     </tbody>
                                 </table>
                             </div>
@@ -132,14 +131,14 @@
                                 <table class="ui middle aligned compact small basic sortable table" id="tableActivities">
                                     <thead>
                                         <tr>
-                                            <th>Descrição</th>
+                                            <th>Descriï¿½ï¿½o</th>
                                             <th>Branch</th>
-                                            <th>Ações</th>
+                                            <th>Aï¿½ï¿½es</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td contenteditable="true">D23483: Uma demanda em homologação
+                                            <td contenteditable="true">D23483: Uma demanda em homologaï¿½ï¿½o
                                             </td>
                                             <td contenteditable="true">https://github.com/viniciusknob/deployment-monitor
                                             </td>
@@ -151,7 +150,7 @@
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td contenteditable="true">INC999988: Um incidente em produção
+                                            <td contenteditable="true">INC999988: Um incidente em produï¿½ï¿½o
                                             </td>
                                             <td contenteditable="true">https://github.com/nicolasbouvie/deployment-monitor
                                             </td>
@@ -169,10 +168,10 @@
                     </div>
                     <div class="four wide column">
                         <h5 class="ui inverted top attached red header">
-                            Alterações
+                            Alteraï¿½ï¿½es
                         </h5>
                         <div class="ui segment attached">
-                            Nenhuma alteração para salvar!
+                            Nenhuma alteraï¿½ï¿½o para salvar!
                         </div>
                         <div class="ui inverted bottom attached black header">
                             <div class="ui two fluid buttons">
@@ -197,13 +196,13 @@
         <script>
             $('#tableSMs').tablesort();
             var loadActivities = function(idSM) {
-            	$('#divActivities').hide(300);
-            	$("#tableActivities tbody tr").remove();
+              $('#divActivities').hide(300);
+              $("#tableActivities tbody tr").remove();
                 $.ajax({
                     url: "${pageContext.request.contextPath}/api/sm/" + idSM,
                     contentType: 'application/json'
                 }).then(function(data) {
-                	if (data.solicitacaoMudanca.atividades) {
+                  if (data.solicitacaoMudanca.atividades) {
                         $.each(data.solicitacaoMudanca.atividades, function() {
                             var tr = '<tr>' +
                                         '<td contenteditable="true">'+this.descricao+'</td>' +
@@ -219,9 +218,9 @@
                         });
                         $('#tableActivities').tablesort();
                         $('#divActivities').show(300);
-                	} else {
-                		alert("Nenhuma atividade cadastrada para essa SM.");//TODO
-                	}
+                  } else {
+                    alert("Nenhuma atividade cadastrada para essa SM.");//TODO
+                  }
                 });
             };
             $('td[contenteditable="true"]').blur(function(){
