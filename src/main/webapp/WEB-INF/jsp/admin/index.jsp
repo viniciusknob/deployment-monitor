@@ -21,22 +21,22 @@
                 <div class="ui tiered teal menu">
                     <div class="menu">
                         <a class="active item">
-                             <i class="settings icon"></i> �rea Administrativa
+                             <i class="settings icon"></i> <fmt:message key="menu.admin"/>
                         </a>
                         <div class="right menu">
                             <a class="item" href="${linkTo[DashboardController].index}">
-                                 <i class="dashboard icon"></i> Dashboard
+                                 <i class="dashboard icon"></i> <fmt:message key="menu.dashboard"/>
                             </a>
                             <a class="item" id="btnInfo">
-                                 <i class="info icon"></i> Sobre
+                                 <i class="info icon"></i> <fmt:message key="menu.about"/>
                             </a>
                         </div>
                         <div class="ui sub menu">
                             <a class="active item">
-                                 <i class="desktop icon"></i> O que est� acontecendo...
+                                 <i class="desktop icon"></i> <fmt:message key="submenu.current"/>
                             </a>
                             <a class="item">
-                                 <i class="briefcase icon"></i> Hist�rico
+                                 <i class="briefcase icon"></i> <fmt:message key="submenu.history"/>
                             </a>
                         </div>
                     </div>
@@ -44,41 +44,39 @@
 
                 <div class="ui grid">
                     <div class="twelve wide column">
-                        <!-- Tabela: Solicita��es de Mudan�a -->
+                        <!-- Tabela: Solicitacoes de Mudanca -->
                         <div id="divChangeRequest">
                             <h5 class="ui inverted top attached teal header">
-                                Solicita��es de Mudan�a
+                                <fmt:message key="header.sms"/>
                             </h5>
                             <div class="ui segment attached">
                                 <table class="ui middle aligned compact small basic sortable table" id="tableSMs">
                                     <thead>
                                         <tr>
-                                            <th>Data/Hora</th>
-                                            <th>Nome</th>
-                                            <th>A��es</th>
+                                            <th><fmt:message key="table.head.dateHour"/></th>
+                                            <th><fmt:message key="table.head.name"/></th>
+                                            <th><fmt:message key="table.head.actions"/></th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                      <c:forEach items="${sms}" var="sm">
-                      <tr>
-                                              <td contenteditable="true">
-                                                <fmt:formatDate value="${sm.data}" pattern="dd MMM, yyyy"/>
-                                              </td>
-                                              <td contenteditable="true">
-                                                ${sm.nome}
-                                              </td>
-                                              <td>
-                                                  <div class="ui mini basic button" id="btnSMRecord${sm.id}">
-                                                       <i class="hdd icon"></i>
-                                                      Arquivar
-                                                  </div>
-                                                  <div class="ui mini basic button" onclick="loadActivities(${sm.id})">
-                                                       <i class="tasks icon"></i>
-                                                      Escopo
-                                                  </div>
-                                              </td>
-                                          </tr>
-                    </c:forEach>
+                                    	<c:forEach items="${sms}" var="sm">
+	                      					<tr>
+	                                        	<td contenteditable="true">
+	                                                <fmt:formatDate value="${sm.data}" pattern="dd MMM, yyyy"/>
+	                                            </td>
+	                                            <td contenteditable="true">${sm.nome}</td>
+	                                            <td>
+	                                                 <div class="ui mini basic button" id="btnSMRecord${sm.id}">
+	                                                      <i class="hdd icon"></i>
+	                                                      <fmt:message key="btn.archive"/>
+	                                                  </div>
+	                                                  <div class="ui mini basic button" onclick="loadActivities(${sm.id})">
+	                                                      <i class="tasks icon"></i>
+	                                                      <fmt:message key="btn.scope"/>
+	                                                  </div>
+	                                             </td>
+	                                          </tr>
+                    					</c:forEach>
                                     </tbody>
                                 </table>
                             </div>
@@ -89,39 +87,39 @@
                         <!-- Tabela: Escopo da SMs, Atividades -->
                         <div id="divActivities" style="display:none;">
                             <h5 class="ui inverted top attached green header">
-                                Escopo
+                                <fmt:message key="header.scope"/>
                             </h5>
                             <div class="ui segment attached">
                                 <table class="ui middle aligned compact small basic sortable table" id="tableActivities">
                                     <thead>
                                         <tr>
-                                            <th>Descri��o</th>
-                                            <th>Branch</th>
-                                            <th>A��es</th>
+                                            <th><fmt:message key="table.head.description"/></th>
+                                            <th><fmt:message key="table.head.branch"/></th>
+                                            <th><fmt:message key="table.head.actions"/></th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td contenteditable="true">D23483: Uma demanda em homologa��o
+                                            <td contenteditable="true">D23483: Uma demanda em homologacao
                                             </td>
                                             <td contenteditable="true">https://github.com/viniciusknob/deployment-monitor
                                             </td>
                                             <td>
                                                 <div class="ui mini basic button" id="btnActivityRecord12">
-                                                     <i class="hdd icon"></i>
-                                                    Arquivar
+                                                    <i class="hdd icon"></i>
+                                                    <fmt:message key="btn.archive"/>
                                                 </div>
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td contenteditable="true">INC999988: Um incidente em produ��o
+                                            <td contenteditable="true">INC999988: Um incidente em producao
                                             </td>
                                             <td contenteditable="true">https://github.com/nicolasbouvie/deployment-monitor
                                             </td>
                                             <td>
                                                 <div class="ui mini basic button" id="btnActivityRecord12">
-                                                     <i class="hdd icon"></i>
-                                                    Arquivar
+                                                    <i class="hdd icon"></i>
+                                                    <fmt:message key="btn.archive"/>
                                                 </div>
                                             </td>
                                         </tr>
@@ -132,10 +130,10 @@
                     </div>
                     <div class="four wide column">
                         <h5 class="ui inverted top attached red header">
-                            Altera��es
+                            Alteracoes
                         </h5>
                         <div class="ui segment attached">
-                            Nenhuma altera��o para salvar!
+                            Nenhuma alteracao para salvar!
                         </div>
                         <div class="ui inverted bottom attached black header">
                             <div class="ui two fluid buttons">

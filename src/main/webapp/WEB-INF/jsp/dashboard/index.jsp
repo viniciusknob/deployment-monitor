@@ -16,19 +16,19 @@
                 <div class="ui tiered teal menu">
                     <div class="menu">
                         <a class="active item">
-                             <i class="dashboard icon"></i> Dashboard
+                             <i class="dashboard icon"></i> <fmt:message key="menu.dashboard"/>
                         </a>
                         <div class="right menu">
                             <a class="item" href="${linkTo[SolicitacaoReintegrateController].add}">
-                                 <i class="text file outline icon"></i> Nova Solicitação
+                                 <i class="text file outline icon"></i> <fmt:message key="menu.newSolicitation"/>
                             </a>
                             <a class="item" id="btnInfo">
-                                 <i class="info icon"></i> Sobre
+                                 <i class="info icon"></i> <fmt:message key="menu.about"/>
                             </a>
                         </div>
                     </div>
                     <div class="ui sub menu">
-                         <a class="active item">Tudo</a>
+                         <a class="active item"><fmt:message key="submenu.all"/></a>
                          <c:forEach items="${sms}" var="sm">
                              <a class="item" href="${linkTo[DashboardController].filter(sm.id)}">${sm.nome}</a>
                          </c:forEach>
@@ -87,15 +87,15 @@
                 <div class="ui two column grid">
                     <div class="column">
                         <h5 class="ui top attached header">
-                            Últimas Solicitações
+                            <fmt:message key="header.latestSolicitations"/>
                         </h5>
                         <div class="ui segment attached">
                             <table class="ui middle aligned compact basic mini sortable table" id="tableLatestSolicitations">
                                 <thead>
                                     <tr>
-                                        <th>Data/Hora</th>
-                                        <th>Solicitação</th>
-                                        <th>Status</th>
+                                        <th><fmt:message key="table.head.dateHour"/></th>
+                                        <th><fmt:message key="table.head.solicitation"/></th>
+                                        <th><fmt:message key="table.head.status"/></th>
                                     </tr>
                                 </thead>
                                 <tbody>
