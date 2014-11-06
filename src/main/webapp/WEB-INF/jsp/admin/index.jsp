@@ -32,8 +32,8 @@
                             </a>
                         </div>
                         <div class="ui sub menu">
-                            <a class="active item">
-                                 <i class="desktop icon"></i> <fmt:message key="submenu.current"/>
+                            <a class="item" id="btnNewSM">
+                                 <i class="file outline icon"></i> <fmt:message key="submenu.newSM"/>
                             </a>
                             <a class="item">
                                  <i class="briefcase icon"></i> <fmt:message key="submenu.history"/>
@@ -42,149 +42,228 @@
                     </div>
                 </div>
 
-                <div class="ui grid">
-                    <div class="twelve wide column">
-                        <!-- Tabela: Solicitacoes de Mudanca -->
-                        <div id="divChangeRequest">
-                            <h5 class="ui inverted top attached teal header">
-                                <fmt:message key="header.sms"/>
-                            </h5>
-                            <div class="ui segment attached">
-                                <table class="ui middle aligned compact small basic sortable table" id="tableSMs">
-                                    <thead>
-                                        <tr>
-                                            <th><fmt:message key="table.head.dateHour"/></th>
-                                            <th><fmt:message key="table.head.name"/></th>
-                                            <th><fmt:message key="table.head.actions"/></th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                    	<c:forEach items="${sms}" var="sm">
-	                      					<tr>
-	                                        	<td contenteditable="true">
-	                                                <fmt:formatDate value="${sm.data}" pattern="dd MMM, yyyy"/>
-	                                            </td>
-	                                            <td contenteditable="true">${sm.nome}</td>
-	                                            <td>
-	                                                 <div class="ui mini basic button" id="btnSMRecord${sm.id}">
-	                                                      <i class="hdd icon"></i>
-	                                                      <fmt:message key="btn.archive"/>
-	                                                  </div>
-	                                                  <div class="ui mini basic button" onclick="loadActivities(${sm.id})">
-	                                                      <i class="tasks icon"></i>
-	                                                      <fmt:message key="btn.scope"/>
-	                                                  </div>
-	                                             </td>
-	                                          </tr>
-                    					</c:forEach>
-                                    </tbody>
-                                </table>
-                            </div>
+            	<!-- Manutencao de SMs -->
+            	<form action="${linkTo[AdminController].saveSM}" method="POST" class="ui form raised teal fluid small segment" id="formNewSM" style="display:none;">
+            		<input type="hidden" name="sm.id" />
+                    <div class="two fields">
+                        <div class="field">
+                            <label>Nome</label>
+                            <input name="sm.nome" placeholder="Nome" type="text">
                         </div>
-                        
-                        <br class="clear:both;" />
-        
-                        <!-- Tabela: Escopo da SMs, Atividades -->
-                        <div id="divActivities" style="display:none;">
-                            <h5 class="ui inverted top attached green header">
-                                <fmt:message key="header.scope"/>
-                            </h5>
-                            <div class="ui segment attached">
-                                <table class="ui middle aligned compact small basic sortable table" id="tableActivities">
-                                    <thead>
-                                        <tr>
-                                            <th><fmt:message key="table.head.description"/></th>
-                                            <th><fmt:message key="table.head.branch"/></th>
-                                            <th><fmt:message key="table.head.actions"/></th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td contenteditable="true">D23483: Uma demanda em homologacao
-                                            </td>
-                                            <td contenteditable="true">https://github.com/viniciusknob/deployment-monitor
-                                            </td>
-                                            <td>
-                                                <div class="ui mini basic button" id="btnActivityRecord12">
-                                                    <i class="hdd icon"></i>
-                                                    <fmt:message key="btn.archive"/>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td contenteditable="true">INC999988: Um incidente em producao
-                                            </td>
-                                            <td contenteditable="true">https://github.com/nicolasbouvie/deployment-monitor
-                                            </td>
-                                            <td>
-                                                <div class="ui mini basic button" id="btnActivityRecord12">
-                                                    <i class="hdd icon"></i>
-                                                    <fmt:message key="btn.archive"/>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
+                        <div class="field">
+                            <label>Data</label>
+                            <input name="sm.data" placeholder="Ex.: 01/01/2014" type="text">
                         </div>
                     </div>
-                    <div class="four wide column">
-                        <h5 class="ui inverted top attached red header">
-                            Alteracoes
-                        </h5>
-                        <div class="ui segment attached">
-                            Nenhuma alteracao para salvar!
-                        </div>
-                        <div class="ui inverted bottom attached black header">
-                            <div class="ui two fluid buttons">
-                                <div class="mini ui negative button">
-                                    Cancelar
-                                </div>
-                                <div class="mini ui positive button">
-                                    Salvar
-                                </div>
-                            </div>
-                        </div>
+                    <div style="float:right;">
+                        <a class="ui button negative mini" href="${linkTo[AdminController].index}">
+                            Cancelar
+                        </a>
+                        <button class="ui button positive mini" type="submit">
+                            Salvar
+                        </button>
+                    </div>
+                    <br />
+            	</form>
+            	
+                <!-- Tabela: Solicitacoes de Mudanca -->
+                <div>
+                    <h5 class="ui inverted top attached teal header">
+                        <fmt:message key="header.sms"/>
+                    </h5>
+                    <div class="ui segment attached">
+                        <table class="ui middle aligned compact small basic sortable table" id="tableSMs">
+                            <thead>
+                                <tr>
+                                    <th><fmt:message key="table.head.dateHour"/></th>
+                                    <th><fmt:message key="table.head.name"/></th>
+                                    <th><fmt:message key="table.head.actions"/></th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
                     </div>
                 </div>
+                
+                <br />
+                
+                <!-- Manutencao de Atividades -->
+                <form action="${linkTo[AdminController].saveActivity}" method="POST" class="ui form raised teal fluid small segment" id="formNewActivity" style="display:none;">
+                    <p><i class="warning icon"></i> Você está criando uma nova atividade para <b id="bNameSM"></b></p>
+                    <input type="hidden" name="atividade.sm.id" />
+                    <input type="hidden" name="atividade.id" />
+                    <div class="two fields">
+                        <div class="field">
+                            <label>Branch</label>
+                            <input name="atividade.branch" placeholder="URL do repositório" type="text">
+                        </div>
+                        <div class="field">
+                            <label>Descrição</label>
+                            <input name="atividade.descricao" placeholder="Descrição" type="text">
+                        </div>
+                    </div>
+                    <div style="float:right;">
+                        <a class="ui button negative mini" href="${linkTo[AdminController].index}">
+                            Cancelar
+                        </a>
+                        <button class="ui button positive mini" type="submit">
+                            Salvar
+                        </button>
+                    </div>
+                    <br />
+            	</form>
 
+                <!-- Tabela: Escopo da SMs, Atividades -->
+                <div id="divActivities" style="display:none;">
+                    <h5 class="ui inverted top attached green header">
+                        <fmt:message key="header.scope"/>
+                    </h5>
+                    <div class="ui segment attached">
+                        <table class="ui middle aligned compact small basic sortable table" id="tableActivities">
+                            <thead>
+                                <tr>
+                                    <th><fmt:message key="table.head.description"/></th>
+                                    <th><fmt:message key="table.head.branch"/></th>
+                                    <th><fmt:message key="table.head.actions"/></th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+                        
             </div>
         </div>
         
         <!-- Scripts -->
         <jsp:include page="../fragment/script.jsp" />
         <script>
-            $('#tableSMs').tablesort();
-            var loadActivities = function(idSM) {
-              $('#divActivities').hide(300);
-              $("#tableActivities tbody tr").remove();
-                $.ajax({
-                    url: "${pageContext.request.contextPath}/api/sm/" + idSM,
-                    contentType: 'application/json'
-                }).then(function(data) {
-                  if (data.solicitacaoMudanca.atividades) {
-                        $.each(data.solicitacaoMudanca.atividades, function() {
-                            var tr = '<tr>' +
-                                        '<td contenteditable="true">'+this.descricao+'</td>' +
-                                        '<td contenteditable="true">'+this.branch+'</td>' +
-                                        '<td>' +
-                                            '<div class="ui mini basic button" id="btnActivityRecord'+this.id+'">' +
-                                                '<i class="hdd icon"></i>' +
-                                                'Arquivar' +
-                                            '</div>' +
-                                        '</td>' +
-                                    '</tr>';
-                            $("#tableActivities tbody").append(tr);
-                        });
-                        $('#tableActivities').tablesort();
-                        $('#divActivities').show(300);
-                  } else {
-                    alert("Nenhuma atividade cadastrada para essa SM.");//TODO
-                  }
-                });
+            var listSMs = [],
+            
+            editSM = function(id) {
+            	listSMs.forEach(function(sm) {
+            		if (sm.id == id) {
+            			$('#formNewSM input[name="sm.id"]').val(sm.id);
+                    	$('#formNewSM input[name="sm.nome"]').val(sm.nome);
+                    	$('#formNewSM input[name="sm.data"]').val(new Date(sm.data).toLocaleDateString());
+                    	$('#formNewSM').show(300);
+            		}
+            	});
+            },
+            
+            buildActivities = function(idSM) {
+				$('#divActivities').hide();
+				$("#tableActivities tbody tr").remove();
+				listSMs.forEach(function(sm) {
+					if (sm.id == idSM) {
+						$.get('${linkTo[AtividadeController].list}', {"sm.id":idSM}, function(data) {
+							if (data) {
+								sm.atividades = data;
+								data.forEach(function(activity) {
+									var tr = '' +
+										'<tr id="trActivity'+activity.id+'">' +
+											'<td>'+activity.descricao+'</td>' +
+											'<td>'+activity.branch+'</td>' +
+											'<td>' +
+												'<button class="ui mini basic button" onclick="editActivity('+sm.id+','+activity.id+')">' +
+		                                        	'<i class="edit icon"></i>' +
+		                                        	'<fmt:message key="btn.edit"/>' +
+		                                    	'</button>' +
+										        '<button class="ui mini basic button" onclick="removeActivity('+activity.id+')">' +
+										            '<i class="remove sign icon"></i>' +
+										            '<fmt:message key="btn.remove"/>' +
+										        '</button>' +
+											'</td>' +
+										'</tr>';
+									$("#tableActivities tbody").append(tr);
+								});
+							} else {
+								alert("Nenhuma atividade cadastrada para essa SM.");
+							}
+			            }, 'json')
+			            .done(function() {
+			            	$('#tableActivities').tablesort();
+							$('#divActivities').show(300);
+			            });
+					}
+				});
+			},
+			
+			newActivity = function(idSM) {
+				listSMs.forEach(function(sm) {
+					if (sm.id == idSM) {
+						$('#bNameSM').text(sm.nome);
+		            	$('#formNewActivity input[name="atividade.sm.id"]').val(sm.id);
+						$('#formNewActivity input[name="atividade.id"]').val('');
+		            	$('#formNewActivity input[name="atividade.branch"]').val('');
+		            	$('#formNewActivity input[name="atividade.descricao"]').val('');
+		            	$('#formNewActivity').show(300);
+					}
+				});
+			},
+			
+			editActivity = function(idSM,idActivity) {
+				listSMs.forEach(function(sm) {
+					if (sm.id == idSM) {
+						sm.atividades.forEach(function(activity) {
+							if (activity.id) {
+								$('#bNameSM').text(sm.nome);
+				            	$('#formNewActivity input[name="atividade.sm.id"]').val(sm.id);
+								$('#formNewActivity input[name="atividade.id"]').val(activity.id);
+				            	$('#formNewActivity input[name="atividade.branch"]').val(activity.branch);
+				            	$('#formNewActivity input[name="atividade.descricao"]').val(activity.descricao);
+				            	$('#formNewActivity').show(300);
+							}
+						});
+					}
+				});
+            },
+            
+            removeActivity = function(idActivity) {
+            	$.post('${linkTo[AtividadeController].remove}', {id:idActivity}, function() {
+					$('#tableActivities tr[id="trActivity'+idActivity+'"]').remove();
+            	});
             };
-            $('td[contenteditable="true"]').blur(function(){
-                alert(this.innerText);
+            
+            $.get('${linkTo[SolicitacaoMudancaController].list}', function(data) {
+            	if (!data) return;
+            	listSMs = data;
+            	data.forEach(function(sm) {
+	            	var tr = '' +
+		            	'<tr>' +
+			            	'<td>'+new Date(sm.data).toLocaleDateString()+'</td>' +
+			                '<td>'+sm.nome+'</td>' +
+			                '<td>' +
+			                    '<button class="ui mini basic button" onclick="newActivity('+sm.id+')">' +
+			                        '<i class="add sign box icon"></i>' +
+			                        '<fmt:message key="btn.newActivity"/>' +
+			                 	'</button>' +
+			                    '<div class="ui mini basic button" onclick="buildActivities('+sm.id+')">' +
+			                        '<i class="tasks icon"></i>' +
+			                        '<fmt:message key="btn.scope"/>' +
+			                    '</div>' +
+			                	'<button class="ui mini basic button" onclick="editSM('+sm.id+')">' +
+			                    	'<i class="edit icon"></i>' +
+			                    	'<fmt:message key="btn.edit"/>' +
+			                	'</button>' +
+			                    '<div class="ui mini basic button">' +
+			                        '<i class="remove sign icon"></i>' +
+			                        '<fmt:message key="btn.remove"/>' +
+			                    '</div>' +
+			                '</td>' +
+		        		'</tr>';
+	            	$("#tableSMs tbody").append(tr);
+            	});
+            }, 'json')
+            .done(function() {
+        		$('#tableSMs').tablesort();
+        	});
+            
+            $('#btnNewSM').click(function() {
+            	$('#formNewSM input[name="sm.id"]').val('');
+            	$('#formNewSM input[name="sm.nome"]').val('');
+            	$('#formNewSM input[name="sm.data"]').val('');
+            	$('#formNewSM').show(300);
             });
         </script>
         

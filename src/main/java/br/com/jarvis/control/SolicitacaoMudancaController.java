@@ -1,47 +1,28 @@
 package br.com.jarvis.control;
 
+import java.util.List;
+
 import br.com.caelum.vraptor.Controller;
+import br.com.caelum.vraptor.Delete;
+import br.com.caelum.vraptor.Get;
 import br.com.caelum.vraptor.Path;
-import br.com.caelum.vraptor.Post;
+import br.com.caelum.vraptor.view.Results;
 import br.com.jarvis.model.DAO;
 import br.com.jarvis.model.SolicitacaoMudanca;
 
 @Path("/sm")
 @Controller
 public class SolicitacaoMudancaController extends SuperController {
-	@Path("")
+	
+	@Get
 	public void list() {
-		result.include("list", DAO.getAll(SolicitacaoMudanca.class));
+		List<SolicitacaoMudanca> all = DAO.getAll(SolicitacaoMudanca.class);
+		result.use(Results.json()).withoutRoot().from(all).serialize();
 	}
 	
-	@Path("/add")
-	public void add() {
-	}
-	
-	@Post("/save")
-	public void save(SolicitacaoMudanca sm) {
-		if (sm.getId() != null) {
-			SolicitacaoMudanca update = DAO.getByID(SolicitacaoMudanca.class, sm.getId());
-			update.setNome(sm.getNome());
-			update.setData(sm.getData());
-			update.update();
-		} else {
-			sm.add();
-		}
-		result.redirectTo(this).list();
-	}
-
-	@Path("/delete/{id}")
+	@Delete("/delete/{id}")
 	public void delete(long id) {
 		DAO.delete(SolicitacaoMudanca.class, id);
-		result.redirectTo(this).list();
 	}
 	
-	@Path("/edit/{id}")
-	public void edit(long id) {
-		SolicitacaoMudanca sm = DAO.getByID(SolicitacaoMudanca.class, id);
-		result.include("sm", sm);
-		list();
-		result.of(this).list();
-	}
 }
