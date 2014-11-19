@@ -1,16 +1,20 @@
 package br.com.jarvis.control;
 
+import javax.inject.Inject;
+
 import br.com.caelum.vraptor.Controller;
 import br.com.caelum.vraptor.Path;
-import br.com.jarvis.model.DAO;
-import br.com.jarvis.model.SolicitacaoMudanca;
+import br.com.jarvis.model.SolicitacaoMudancaRepository;
 
 @Path("/sr")
 @Controller
 public class SolicitacaoReintegrateController extends SuperController {
+	
+	@Inject
+	private SolicitacaoMudancaRepository smRepo;
 
 	@Path("/add")
 	public void add() {
-		result.include("listSM", DAO.getAll(SolicitacaoMudanca.class));
+		result.include("listSM", smRepo.getAll());
 	}
 }

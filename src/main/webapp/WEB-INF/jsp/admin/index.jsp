@@ -94,12 +94,12 @@
                     <input type="hidden" name="atividade.id" />
                     <div class="two fields">
                         <div class="field">
-                            <label>Branch</label>
-                            <input name="atividade.branch" placeholder="URL do repositório" type="text">
-                        </div>
-                        <div class="field">
                             <label>Descrição</label>
                             <input name="atividade.descricao" placeholder="Descrição" type="text">
+                        </div>
+                        <div class="field">
+                            <label>Branch</label>
+                            <input name="atividade.branch" placeholder="URL do repositório" type="text">
                         </div>
                     </div>
                     <div style="float:right;">
@@ -148,6 +148,12 @@
                     	$('#formNewSM input[name="sm.data"]').val(new Date(sm.data).toLocaleDateString());
                     	$('#formNewSM').show(300);
             		}
+            	});
+            },
+            
+            removeSM = function(idSM) {
+            	$.post('${linkTo[SolicitacaoMudancaController].remove}', {id:idSM}, function() {
+					$('#tableSMs tr[id="trSM'+idSM+'"]').remove();
             	});
             },
             
@@ -206,7 +212,7 @@
 				listSMs.forEach(function(sm) {
 					if (sm.id == idSM) {
 						sm.atividades.forEach(function(activity) {
-							if (activity.id) {
+							if (activity.id == idActivity) {
 								$('#bNameSM').text(sm.nome);
 				            	$('#formNewActivity input[name="atividade.sm.id"]').val(sm.id);
 								$('#formNewActivity input[name="atividade.id"]').val(activity.id);
@@ -230,7 +236,7 @@
             	listSMs = data;
             	data.forEach(function(sm) {
 	            	var tr = '' +
-		            	'<tr>' +
+		            	'<tr id="trSM'+sm.id+'">' +
 			            	'<td>'+new Date(sm.data).toLocaleDateString()+'</td>' +
 			                '<td>'+sm.nome+'</td>' +
 			                '<td>' +
@@ -246,7 +252,7 @@
 			                    	'<i class="edit icon"></i>' +
 			                    	'<fmt:message key="btn.edit"/>' +
 			                	'</button>' +
-			                    '<div class="ui mini basic button">' +
+			                    '<div class="ui mini basic button" onclick="removeSM('+sm.id+')">' +
 			                        '<i class="remove sign icon"></i>' +
 			                        '<fmt:message key="btn.remove"/>' +
 			                    '</div>' +

@@ -29,9 +29,6 @@
                     </div>
                     <div class="ui sub menu">
                          <a class="active item"><fmt:message key="submenu.all"/></a>
-                         <c:forEach items="${sms}" var="sm">
-                             <a class="item" href="${linkTo[DashboardController].filter(sm.id)}">${sm.nome}</a>
-                         </c:forEach>
                     </div>
                 </div>
               
@@ -263,6 +260,13 @@
                 .modal('attach events', '#btnInfo', 'show')
                 .modal('setting', 'transition', 'vertical flip');
             $('#tableLatestSolicitations,#tableActivities').tablesort();
+            
+            $.get('${linkTo[SolicitacaoMudancaController].list}', function(data) {
+            	if (!data) return;
+            	data.forEach(function(sm) {
+		        	$('.ui.sub.menu').append('<a class="item">'+sm.nome+'</a>');
+            	});
+            }, 'json');
         </script>
         
   </body>

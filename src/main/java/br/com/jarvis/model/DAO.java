@@ -1,66 +1,58 @@
 package br.com.jarvis.model;
 
-import java.io.Serializable;
-import java.util.List;
-
-import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import org.hibernate.boot.registry.StandardServiceRegistry;
-import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
-import org.hibernate.cfg.Configuration;
 
-public abstract class DAO implements Serializable {
-	private static final long serialVersionUID = 2971611064076646827L;
-	private static final Session session;
+import br.com.jarvis.persistence.HibernateUtil;
+
+public class DAO {
 	
-	static {
-		Configuration cfg = new Configuration().configure("/hibernate.cfg.xml");
-		if (Boolean.getBoolean("test")) {
-			cfg.setProperty("hibernate.connection.autocommit", "false");
-			cfg.setProperty("hibernate.connection.url", "jdbc:hsqldb:mem:DeploymentMonitorDB");
+	@SuppressWarnings("unchecked")
+	public static <T> T get(Class<T> type, long id) {
+		Session session = HibernateUtil.getSession();
+		try {
+			return (T) session.get(type, id);
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			session.close();
 		}
-		StandardServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder().applySettings(cfg.getProperties()).build();
-		session = cfg.buildSessionFactory(serviceRegistry).openSession();
+		return null;
 	}
 	
-	public abstract Serializable getId();
-	
-	public boolean add() {
-		Serializable saved = session.save(this);
-		return getId() != null && getId().equals(saved);
-	}
-	
-	public void update() {
-		session.update(this);
-	}
-	
-	public void delete() {
-		session.delete(this);
-	}
-	
-	public static <T> T getByID(Class<T> type, long id) {
-		String hql = new StringBuilder("from ").append(type.getSimpleName()).append(" t where t.id = :id").toString();
-
-		Query query = session.createQuery(hql).setParameter("id", id);
-
-		return type.cast(query.uniqueResult());
-	}
-	
-	public static boolean delete(Class<?> type, long id) {
-		String hql = new StringBuilder("delete from ").append(type.getSimpleName()).append(" t where t.id = :id").toString();
-
-		Query query = session.createQuery(hql).setParameter("id", id);
-
-		return 1 == query.executeUpdate();
+	public static boolean saveOrUpdate(Object obj) {
+		Session session = HibernateUtil.getSession();
+		Transaction tx = session.beginTransaction();
+		try {
+			session.saveOrUpdate(obj);
+			tx.commit();
+			return true;
+		} catch (Exception ex) {
+			ex.printStackTrace();
+			if (tx!=null) tx.rollback();
+		} finally {
+			session.flush();
+			session.close();
+		}
+		return false;
 	}
 	
 	@SuppressWarnings("unchecked")
-	public static <T extends DAO> List<T> getAll(Class<T> type) {
-		return (List<T>) session.createCriteria(type).list();
+	public static <T> T delete(Class<T> type, long id) {
+		Session session = HibernateUtil.getSession();
+		Transaction tx = session.beginTransaction();
+		try {
+			T t = (T) session.get(type, id);
+			session.delete(t);
+			tx.commit();
+			return t;
+		} catch (Exception ex) {
+			ex.printStackTrace();
+			if (tx!=null) tx.rollback();
+		} finally {
+			session.close();
+		}
+		return null;
 	}
 	
-	public static Transaction getTransaction() {
-		return session.beginTransaction();
-	}
 }

@@ -1,26 +1,28 @@
 package br.com.jarvis.model;
 
+import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import org.apache.commons.lang.builder.EqualsBuilder;
+import org.apache.commons.lang.builder.HashCodeBuilder;
+
 @Entity
-public class Atividade extends DAO {
+public class Atividade implements Serializable {
 	private static final long serialVersionUID = 4821907415936465317L;
 
-	@Id 
+	@Id
 	@GeneratedValue
 	private Long id;
 	private String descricao;
 	private String branch;
-	
+
 	@ManyToOne
-	@JoinColumn(name="sm_id")
 	private SolicitacaoMudanca sm;
-	
-	@Override
+
 	public Long getId() {
 		return id;
 	}
@@ -51,5 +53,18 @@ public class Atividade extends DAO {
 
 	public void setSm(SolicitacaoMudanca sm) {
 		this.sm = sm;
+		if (sm.getAtividades().contains(this)) return;
+		sm.addAtividade(this);
 	}
+	
+	@Override
+	public int hashCode() {
+		return HashCodeBuilder.reflectionHashCode(this);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		return EqualsBuilder.reflectionEquals(this, obj);
+	}
+
 }

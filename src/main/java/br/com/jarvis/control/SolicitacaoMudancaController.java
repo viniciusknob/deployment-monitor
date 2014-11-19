@@ -1,28 +1,29 @@
 package br.com.jarvis.control;
 
-import java.util.List;
+import javax.inject.Inject;
 
 import br.com.caelum.vraptor.Controller;
-import br.com.caelum.vraptor.Delete;
 import br.com.caelum.vraptor.Get;
 import br.com.caelum.vraptor.Path;
+import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.view.Results;
-import br.com.jarvis.model.DAO;
-import br.com.jarvis.model.SolicitacaoMudanca;
+import br.com.jarvis.model.SolicitacaoMudancaRepository;
 
 @Path("/sm")
 @Controller
 public class SolicitacaoMudancaController extends SuperController {
 	
+	@Inject
+	private SolicitacaoMudancaRepository smRepo;
+	
 	@Get
 	public void list() {
-		List<SolicitacaoMudanca> all = DAO.getAll(SolicitacaoMudanca.class);
-		result.use(Results.json()).withoutRoot().from(all).serialize();
+		result.use(Results.json()).withoutRoot().from(smRepo.getAll()).serialize();
 	}
 	
-	@Delete("/delete/{id}")
-	public void delete(long id) {
-		DAO.delete(SolicitacaoMudanca.class, id);
+	@Post
+	public void remove(long id) {
+		result.use(Results.json()).withoutRoot().from(smRepo.remove(id)).serialize();
 	}
 	
 }
