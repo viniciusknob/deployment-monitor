@@ -11,6 +11,7 @@ import br.com.jarvis.model.SolicitacaoMudancaRepository;
 
 @Path("/sm")
 @Controller
+// TODO Alterar nome para SMController ou ChangeRequestController
 public class SolicitacaoMudancaController extends SuperController {
 	
 	@Inject

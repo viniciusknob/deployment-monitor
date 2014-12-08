@@ -8,6 +8,7 @@ import org.hibernate.Transaction;
 
 import br.com.jarvis.persistence.HibernateUtil;
 
+//TODO Alterar nome de classe para ActivityRepository
 public class AtividadeRepository implements Repository<Atividade> {
 	
 	@Inject

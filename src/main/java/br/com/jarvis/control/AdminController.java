@@ -30,8 +30,8 @@ public class AdminController extends SuperController {
 	}
 	
 	@Post
-	public void saveActivity(Atividade a) {
-		acRepo.set(a);
+	public void saveActivity(Atividade atividade) {
+		acRepo.set(atividade);
 		result.redirectTo(this).index();
 	}
 }

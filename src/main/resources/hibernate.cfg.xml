@@ -27,7 +27,7 @@
 		<!-- Mapping -->
 		<mapping class="br.com.jarvis.model.Atividade" />
  		<mapping class="br.com.jarvis.model.SolicitacaoMudanca" />
-		<mapping class="br.com.jarvis.model.SolicitacaoReintegrate" />
+		<mapping class="br.com.jarvis.model.SRD" />
 		
 	</session-factory>
 </hibernate-configuration>

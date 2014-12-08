@@ -19,7 +19,7 @@
                              <i class="dashboard icon"></i> <fmt:message key="menu.dashboard"/>
                         </a>
                         <div class="right menu">
-                            <a class="item" href="${linkTo[SolicitacaoReintegrateController].add}">
+                            <a class="item" href="${linkTo[SrdController].add}">
                                  <i class="text file outline icon"></i> <fmt:message key="menu.newSolicitation"/>
                             </a>
                             <a class="item" id="btnInfo">

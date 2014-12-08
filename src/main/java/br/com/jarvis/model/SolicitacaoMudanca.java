@@ -18,6 +18,7 @@ import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
 
 @Entity
+// TODO Alterar nome para SM ou ChangeRequest
 public class SolicitacaoMudanca implements Serializable {
 	private static final long serialVersionUID = 7232480103117214026L;
 

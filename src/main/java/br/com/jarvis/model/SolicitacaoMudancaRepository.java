@@ -8,6 +8,7 @@ import org.hibernate.Session;
 
 import br.com.jarvis.persistence.HibernateUtil;
 
+// TODO Alterar nome para SMRepository ou ChangeRequestRepository
 public class SolicitacaoMudancaRepository implements Repository<SolicitacaoMudanca> {
 	
 	@Override
