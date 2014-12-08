@@ -11,7 +11,7 @@
     <!-- Site Properities -->
     <title><fmt:message key="title.app"/></title>
     <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/semantic-ui-0.19.3/css/semantic.min.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/semantic-ui/0.19.3/css/semantic.min.css">
     
     <!-- Custom Style -->
     <style>
