@@ -6,30 +6,17 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
-import org.hibernate.annotations.Cascade;
-import org.hibernate.annotations.CascadeType;
 
-@Entity
 // TODO Alterar nome para SM ou ChangeRequest
 public class SolicitacaoMudanca implements Serializable {
 	private static final long serialVersionUID = 7232480103117214026L;
 
-	@Id
-	@GeneratedValue
 	private Long id;
 	private String nome;
 	private Date data;
 
-	@OneToMany(mappedBy = "sm", fetch = FetchType.EAGER)
-	@Cascade(value = CascadeType.DELETE)
 	private List<Atividade> atividades;
 
 	public Long getId() {

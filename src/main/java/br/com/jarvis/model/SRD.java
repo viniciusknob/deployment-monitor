@@ -3,25 +3,16 @@ package br.com.jarvis.model;
 import java.io.Serializable;
 import java.util.Date;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-
 import org.apache.commons.lang.builder.ToStringBuilder;
 
-@Entity
 /**
  * Solicitacao de Reintegrate para Deploy
  */
 public class SRD implements Serializable {
 	private static final long serialVersionUID = -3243325451385363424L;
 	
-	@Id
-	@GeneratedValue
 	private Long id;
 	
-	@ManyToOne
 	private Atividade atividade;
 	private String revisions;
 	private String motivo;

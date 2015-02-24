@@ -3,31 +3,20 @@ package br.com.jarvis.model;
 import java.io.Serializable;
 import java.util.List;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
 
-@Entity
 // TODO Alterar nome de classe para Activity
 public class Atividade implements Serializable {
 	private static final long serialVersionUID = 4821907415936465317L;
 
-	@Id
-	@GeneratedValue
 	private Long id;
 	private String descricao;
 	private String branch;
 
-	@ManyToOne
 	private SolicitacaoMudanca sm;
 	
-	@OneToMany(mappedBy = "atividade")
 	private List<SRD> srds;
 
 	public Long getId() {
@@ -62,6 +51,14 @@ public class Atividade implements Serializable {
 		this.sm = sm;
 		if (sm.getAtividades().contains(this)) return;
 		sm.addAtividade(this);
+	}
+	
+	public List<SRD> getSrds() {
+		return srds;
+	}
+	
+	public void setSrds(List<SRD> srds) {
+		this.srds = srds;
 	}
 	
 	@Override
