@@ -7,8 +7,8 @@ import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.view.Results;
 import br.com.jarvis.model.SRD;
-import br.com.jarvis.model.SRDRepository;
-import br.com.jarvis.model.SolicitacaoMudancaRepository;
+import br.com.jarvis.repository.SRDRepository;
+import br.com.jarvis.repository.ChangeRequestRepository;
 
 @Path("/srd")
 @Controller()
@@ -16,7 +16,7 @@ import br.com.jarvis.model.SolicitacaoMudancaRepository;
 public class SrdController extends SuperController {
 	
 	@Inject
-	private SolicitacaoMudancaRepository smRepo;
+	private ChangeRequestRepository smRepo;
 	
 	@Inject
 	private SRDRepository srdRepo;
@@ -31,7 +31,7 @@ public class SrdController extends SuperController {
 		 * SMs em PRD nao seriam listadas aqui, somente no historico, sem a 
 		 * possibilidade de alteracao.
 		 */
-		result.include("listSM", smRepo.getAll());
+		result.include("listSM", smRepo.getAll(10));
 	}
 	
 	@Post

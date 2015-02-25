@@ -1,21 +1,18 @@
 package br.com.jarvis.model;
 
-import java.io.Serializable;
 import java.util.List;
 
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
 
-// TODO Alterar nome de classe para Activity
-public class Atividade implements Serializable {
-	private static final long serialVersionUID = 4821907415936465317L;
+public class Activity {
 
 	private Long id;
 	private String descricao;
 	private String branch;
 
-	private SolicitacaoMudanca sm;
+	private ChangeRequest sm;
 	
 	private List<SRD> srds;
 
@@ -43,11 +40,11 @@ public class Atividade implements Serializable {
 		this.branch = branch;
 	}
 
-	public SolicitacaoMudanca getSm() {
+	public ChangeRequest getSm() {
 		return sm;
 	}
 
-	public void setSm(SolicitacaoMudanca sm) {
+	public void setSm(ChangeRequest sm) {
 		this.sm = sm;
 		if (sm.getAtividades().contains(this)) return;
 		sm.addAtividade(this);

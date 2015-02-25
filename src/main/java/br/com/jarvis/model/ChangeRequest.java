@@ -1,6 +1,5 @@
 package br.com.jarvis.model;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
@@ -9,15 +8,13 @@ import java.util.List;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 
-// TODO Alterar nome para SM ou ChangeRequest
-public class SolicitacaoMudanca implements Serializable {
-	private static final long serialVersionUID = 7232480103117214026L;
+public class ChangeRequest {
 
 	private Long id;
 	private String nome;
 	private Date data;
 
-	private List<Atividade> atividades;
+	private List<Activity> atividades;
 
 	public Long getId() {
 		return id;
@@ -43,18 +40,18 @@ public class SolicitacaoMudanca implements Serializable {
 		this.data = data;
 	}
 	
-	public void addAtividade(Atividade at) {
-		if (atividades == null) atividades = new ArrayList<Atividade>();
+	public void addAtividade(Activity at) {
+		if (atividades == null) atividades = new ArrayList<Activity>();
 		this.atividades.add(at);
 		at.setSm(this);
 	}
 
-	public List<Atividade> getAtividades() {
+	public List<Activity> getAtividades() {
 		if (atividades == null) return Collections.emptyList();
-		return new ArrayList<Atividade>(atividades);
+		return new ArrayList<Activity>(atividades);
 	}
 
-	public void setAtividades(List<Atividade> atividades) {
+	public void setAtividades(List<Activity> atividades) {
 		this.atividades = atividades;
 	}
 

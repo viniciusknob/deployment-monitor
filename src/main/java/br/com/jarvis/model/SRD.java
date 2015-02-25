@@ -1,6 +1,5 @@
 package br.com.jarvis.model;
 
-import java.io.Serializable;
 import java.util.Date;
 
 import org.apache.commons.lang.builder.ToStringBuilder;
@@ -8,12 +7,10 @@ import org.apache.commons.lang.builder.ToStringBuilder;
 /**
  * Solicitacao de Reintegrate para Deploy
  */
-public class SRD implements Serializable {
-	private static final long serialVersionUID = -3243325451385363424L;
+public class SRD {
 	
 	private Long id;
-	
-	private Atividade atividade;
+	private Activity activity;
 	private String revisions;
 	private String motivo;
 	private Date data;
@@ -25,11 +22,11 @@ public class SRD implements Serializable {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public Atividade getAtividade() {
-		return atividade;
+	public Activity getActivity() {
+		return activity;
 	}
-	public void setAtividade(Atividade atividade) {
-		this.atividade = atividade;
+	public void setActivity(Activity activity) {
+		this.activity = activity;
 	}
 	public String getRevisions() {
 		return revisions;

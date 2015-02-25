@@ -1,4 +1,4 @@
-package br.com.jarvis.model;
+package br.com.jarvis.repository;
 
 /**
  * <p>

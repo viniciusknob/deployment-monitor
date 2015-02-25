@@ -7,7 +7,7 @@ import br.com.caelum.vraptor.Get;
 import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.view.Results;
-import br.com.jarvis.model.SolicitacaoMudancaRepository;
+import br.com.jarvis.repository.ChangeRequestRepository;
 
 @Path("/sm")
 @Controller
@@ -15,11 +15,11 @@ import br.com.jarvis.model.SolicitacaoMudancaRepository;
 public class SolicitacaoMudancaController extends SuperController {
 	
 	@Inject
-	private SolicitacaoMudancaRepository smRepo;
+	private ChangeRequestRepository smRepo;
 	
 	@Get
 	public void list() {
-		result.use(Results.json()).withoutRoot().from(smRepo.getAll()).serialize();
+		result.use(Results.json()).withoutRoot().from(smRepo.getAll(10)).serialize();
 	}
 	
 	@Post
