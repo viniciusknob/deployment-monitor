@@ -2,8 +2,8 @@ package br.com.jarvis.control;
 
 import javax.inject.Inject;
 
-import org.apache.commons.lang.builder.ToStringBuilder;
-import org.apache.commons.lang.builder.ToStringStyle;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 
 import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.validator.Validator;

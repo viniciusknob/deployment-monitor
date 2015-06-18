@@ -2,7 +2,8 @@ package br.com.jarvis.model;
 
 import java.util.Date;
 
-import org.apache.commons.lang.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+
 
 /**
  * Solicitacao de Reintegrate para Deploy

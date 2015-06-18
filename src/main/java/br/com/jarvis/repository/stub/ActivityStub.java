@@ -31,13 +31,13 @@ public class ActivityStub implements Repository<Activity> {
 		return db.remove(new Long(id).intValue());
 	}
 	
-	public List<Activity> getAll(int idChangeRequest) {
+	public List<Activity> getAll(long idChangeRequest) {
 		List<Activity> list = new ArrayList<Activity>();
-		for (Activity activity : db) {
-			if (activity.getSm().getId().intValue() == idChangeRequest) {
-				list.add(activity);
-			}
-		}
+		Activity activity = new Activity();
+		activity.setId(1L);
+		activity.setDescricao("12345/"+idChangeRequest+": Uma demanda qualquer");
+		activity.setBranch("/branch");
+		list.add(activity);
 		return list;
 	}
 
